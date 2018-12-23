@@ -4,7 +4,10 @@ class LoginController {
     }
 
     async login(ctx) {
-        await ctx.render('index')
+        let obj = {
+            title: 'hello world'
+        }
+        await ctx.render('index', obj)
     }
 }
 

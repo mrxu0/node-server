@@ -15,6 +15,11 @@ module.exports = app => {
   const apiPath = path.join(__dirname, '../server/api/')
   routerLoad('/api', apiPath)*/
 
+  // 公共接口
+  const commonPath = path.join(__dirname, '../router/common/')
+  routerLoad('/common', commonPath)
+  app.use(router.routes()).use(router.allowedMethods()) 
+
   // admin 后端项目
   const adminPath = path.join(__dirname, '../router/admin/')
   routerLoad('/admin', adminPath)
@@ -24,6 +29,7 @@ module.exports = app => {
   app.use(async (ctx, next) =>{  
     await next;
     if(parseInt(ctx.status) === 404){
+      ctx.status = 404
       ctx.body = '404'
     }
   })

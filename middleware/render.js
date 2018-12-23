@@ -6,7 +6,7 @@ module.exports = app => {
     root: path.join(__dirname, '../views'),
     layout: 'template',
     viewExt: 'html',
-    cache: false,
-    debug: process.env.NODE_ENV == 'development'
+    cache: process.env.NODE_ENV !== 'development',
+    debug: false
   });
 }

@@ -4,10 +4,12 @@ const render = require('./middleware/render')
 const static = require('./middleware/static')
 
 
-const app = new koa()
 
+const app = new koa()
+// const serve = require('koa-serve')
 // 静态资源中间件
 static(app)
+// app.use(serve('public'))
 
 // 渲染页面中间件
 render(app)

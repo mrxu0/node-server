@@ -1,5 +1,7 @@
-const static = require('koa-static')
+const serve = require('koa-serve')
+const path = require('path')
 
 module.exports = app => {
-    app.use(static(__dirname, './public'))
+    app.use(serve('public', path.join(__dirname, '..')))
 }
+
