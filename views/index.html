@@ -1,4 +1,4 @@
-<form class="layui-form" action="">
+<form class="layui-form" action="common/upload" method="post">
     <div class="layui-form-item">
         <label class="layui-form-label">输入框</label>
         <div class="layui-input-block">
@@ -12,6 +12,11 @@
             </button>
         </div>
     </div>
+    <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="file" name="filee" id="">
+            </div>
+        </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -30,19 +35,20 @@
             elem: '#test1' //绑定元素
             , url: 'common/upload' //上传接口
             , done: function (res) {
+                console.log(1, res)
                 //上传完毕回调
                 console.log('success');
             }
-            , error: function () {
+            , error: function (err) {
                 //请求异常回调
-                console.log('err');
+                console.log('err', err);
             }
         });
 
         //监听提交
         form.on('submit(formDemo)', function (data) {
             layer.msg(JSON.stringify(data.field));
-            return false;
+            // return false;
         });
     });
 </script>
