@@ -60,4 +60,8 @@ typings/
 # next.js build output
 .next
 
+# 上传文件的路径
 upload
+
+# 日志文件路径
+logs

@@ -2,13 +2,13 @@ class LoginController {
     constructor() {
 
     }
-
     async login(ctx) {
+        ctx.res.setHeader("Access-Control-Allow-Origin", "*"); 
         let obj = {
-            title: 'hello world'
+            title: '666666666'
         }
-        await ctx.render('index', obj)
+        ctx.body = obj;
     }
 }
 
-module.exports = new LoginController
+module.exports = new LoginController()

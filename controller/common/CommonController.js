@@ -1,10 +1,13 @@
 const path = require('path')
 const fs = require('fs')
+const dateFormat = require('dateformat')
 class CommonController {
   constructor() {}
   async upload(ctx) {
+    let date = dateFormat(new Date(), 'yyyy-mm')
+    console.log('date', date);
     const data = ctx.request.files.file;
-    const savePath = path.join(__dirname, '../../public/upload', data.name)
+    const savePath = path.join(__dirname, `../../public/upload/${date}`, data.name)
     const reader = fs.createReadStream(data.path)
     const writer = fs.createWriteStream(savePath)
 
@@ -12,7 +15,7 @@ class CommonController {
       try {
         var stream = reader.pipe(writer);
         stream.on('finish', function () {
-            resolve(`http://当前服务器地址${data.name}`);
+            resolve(`public/upload/${data.name}`);
         });
       } catch (error) {
         console.log('error', error)
@@ -20,8 +23,14 @@ class CommonController {
       }
     })
     
-    ctx.body =  await pro
+    let url = await pro
+    ctx.body =  {
+      success: 1,
+      data: {
+        url: url
+      }
+    }
   }
 }
 
-module.exports = new CommonController
+module.exports = new CommonController()
